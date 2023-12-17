@@ -1,0 +1,43 @@
+.home-page {
+    width: 100%;
+    height: 100vh;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*-----------------Home-Top-Section-------------------*/
+.HomeTop {
+    width: 100%;
+    padding: 2px 9px;
+    display: flex;
+    padding-top: 5px;
+    justify-content: space-between;
+    background-color: #f7f7f7;
+}
+
+.HomeTop #messageIcon {
+    display: block;
+    height: 30px;
+    /* width: 30px; */
+}
+
+.HomeTop #instaLogo {
+    display: block;
+    height: 30px;
+    scale: 1.45;
+    padding-left: 8px;
+}
+
+
+/*-----------------Home-Bottom-Section-------------------*/
+.HomeBottom {
+    display: flex;
+    justify-content: space-around;
+    padding: 3px;
+}
+
+.HomeBottom .footerIcon {
+    height: 25px;
+}

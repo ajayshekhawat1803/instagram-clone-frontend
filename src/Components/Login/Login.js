@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { context } from '../../App';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Login = () => {
     const [username, setUsername] = useState('')
@@ -13,10 +14,10 @@ const Login = () => {
 
     useEffect(() => {
         if (isLoggedin) {
-            console.log('logged in So navigated.token',token);
+            // console.log('logged in So navigated.token', token);
             navigate('/')
         } else {
-            console.log('not logged in');
+            // console.log('not logged in');
         }
     }, [isLoggedin])
 
@@ -27,10 +28,15 @@ const Login = () => {
             response = await axios.post(`http://localhost:5000/api/v1/auth/login`, { username, password })
             if (response.data.data) {
                 setToken(response.data.data.access_token);
+                const userDataToSave = {
+                    token: response.data.data.access_token,
+                    username: response.data.data.user.username
+                }
+                Cookies.set('userData', JSON.stringify(userDataToSave), { expires: 1 }); // Set cookie to expire in 1 days
                 setIsLoggedIn(true)
             }
         } catch (error) {
-            console.log('error occured', error);
+            console.log('error occured', error.response);
         }
         console.log(response);
     }
@@ -45,7 +51,7 @@ const Login = () => {
                     <a>forgot password ?</a>
                 </form>
 
-                <h4>Don't have account?  <a>Signup</a></h4>
+                <h4>Don't have account?  <Link to='/signup'>Sign Up</Link></h4>
 
             </div>
         </div>
