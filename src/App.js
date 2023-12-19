@@ -5,6 +5,7 @@ import Home from './Components/Home/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Signup from './Components/Signup/Signup';
+import Account from './Components/Account/Account';
 
 export const context = createContext({});
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
+            <Route path='/account' element={<Account />} />
           </Routes>
         </context.Provider>
       </BrowserRouter>
