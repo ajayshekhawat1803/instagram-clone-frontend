@@ -12,7 +12,7 @@ function App() {
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('')
   const [loggedInUser, setloggedInUser] = useState('')
-
+  const serverLink = `http://localhost:5000/api/v1`
   useEffect(() => {
     let storedUserData;
     try {
@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <context.Provider value={{ token, setToken, isLoggedin, setIsLoggedIn, loggedInUser }}>
+        <context.Provider value={{ token, setToken, isLoggedin, setIsLoggedIn, loggedInUser,serverLink }}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />

@@ -1,25 +1,36 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { context } from '../../App'
 import HomeBottom from '../Home/HomeBottom'
 import './Account.css'
 import insta from '../../Assets/instalogo.png'
 import settings from '../../Assets/settings.png'
+import axios from 'axios'
 
 const Account = () => {
-    const { isLoggedin } = useContext(context)
+    const { isLoggedin, loggedInUser, token, serverLink } = useContext(context)
     const navigate = useNavigate()
+    const [profileData, setProfileData] = useState({})
 
     useEffect(() => {
         if (!isLoggedin) {
-            console.log('navigated');
             navigate('/login')
         }
         else {
-            console.log('not navigated logged in ');
+            getUserData(loggedInUser)
         }
     }, [])
 
+    const getUserData = async (username) => {
+        const res = await axios.get(`${serverLink}/user/username/${username}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        });
+        console.log(res);
+        setProfileData(res.data?.data)
+    }
     return (
         <div className='container-main'>
             <div className='account-page'>
@@ -34,22 +45,22 @@ const Account = () => {
                         </div>
                         <div className='profile-data-right'>
                             <div className='data-box'>
-                                <h2>40</h2>
+                                <h2>{profileData?.metaData?.posts}</h2>
                                 <h4>Posts</h4>
                             </div>
                             <div className='data-box'>
-                                <h2>363</h2>
+                                <h2>{profileData?.metaData?.followers}</h2>
                                 <h4>Followers</h4>
                             </div>
                             <div className='data-box'>
-                                <h2>344</h2>
+                                <h2>{profileData?.metaData?.followings}</h2>
                                 <h4>Followings</h4>
                             </div>
                         </div>
                     </div>
                     <div className='profile-bio'>
-                        <h3>Ajay Singh Shekhawat</h3>
-                        <p>hellon hiii iagrihg iggri irigr ninrsgir jsirgir jirgrigj</p>
+                        <h3>{profileData?.name}</h3>
+                        <p>{profileData?.metaData?.bio}</p>
                     </div>
                     <div className='profile-btns'>
                         <button>Edit Profile</button>
