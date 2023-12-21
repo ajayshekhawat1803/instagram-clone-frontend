@@ -3,6 +3,7 @@ import { context } from '../../App'
 import { useNavigate } from 'react-router-dom'
 import HomeTop from './HomeTop'
 import HomeBottom from './HomeBottom'
+import Cookies from 'js-cookie'
 
 const Home = () => {
   const { isLoggedin } = useContext(context)
@@ -24,6 +25,7 @@ const Home = () => {
       <HomeTop />
       <div className='home'>
         Home
+        <button onClick={()=>Cookies.remove('userData')}>logout</button>
       </div>
       <HomeBottom />
     </div>

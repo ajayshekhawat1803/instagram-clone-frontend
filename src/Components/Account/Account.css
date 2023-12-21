@@ -84,4 +84,10 @@
 .account-page .posts-section {
     border-top: 1px solid rgba(0, 0, 0, 0.3);
     flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.account-page .posts-section .post-box {
+    width: 33%;
 }

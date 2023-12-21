@@ -6,11 +6,16 @@ import './Account.css'
 import insta from '../../Assets/instalogo.png'
 import settings from '../../Assets/settings.png'
 import axios from 'axios'
+import PostComponent from '../Other Components/Post'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Account = () => {
-    const { isLoggedin, loggedInUser, token, serverLink } = useContext(context)
+    const { isLoggedin, loggedInUser, token, serverLink, loggedInUserID, serverLinkforImages } = useContext(context)
     const navigate = useNavigate()
     const [profileData, setProfileData] = useState({})
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (!isLoggedin) {
@@ -22,18 +27,36 @@ const Account = () => {
     }, [])
 
     const getUserData = async (username) => {
-        const res = await axios.get(`${serverLink}/user/username/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
+        console.log(username);
+        try {
+            const res = await axios.get(`${serverLink}/user/username/${username}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                }
+            });
+            // console.log(res);
+            if (res.status === 200) {
+                setProfileData(res.data?.data)
+                setProfileData(res.data?.data);
+            } else {
+                setErrorMessage(`Server returned status code ${res.status}`);
+                toast.error(errorMessage); // Show an error toast
             }
-        });
-        console.log(res);
-        setProfileData(res.data?.data)
+        } catch (error) {
+            setErrorMessage('Error fetching user data: ' + error.message);
+            toast.error(errorMessage);
+        }
     }
     return (
         <div className='container-main'>
             <div className='account-page'>
+                <ToastContainer position="top-right" autoClose={5000} bodyClassName="custom-toast-body"
+                    toastStyle={{
+                        background: '#333',
+                        color: '#fff',
+                    }}
+                />
                 <div className='top'>
                     <Link to='/'><img className='insta' src={insta}></img></Link>
                     <Link to='/'><img src={settings}></img></Link>
@@ -45,29 +68,35 @@ const Account = () => {
                         </div>
                         <div className='profile-data-right'>
                             <div className='data-box'>
-                                <h2>{profileData?.metaData?.posts}</h2>
+                                <h2>{profileData?.posts?.length || 0}</h2>
                                 <h4>Posts</h4>
                             </div>
                             <div className='data-box'>
-                                <h2>{profileData?.metaData?.followers}</h2>
+                                <h2>{profileData?.followers?.length || 0}</h2>
                                 <h4>Followers</h4>
                             </div>
                             <div className='data-box'>
-                                <h2>{profileData?.metaData?.followings}</h2>
+                                <h2>{profileData?.followings?.length || 0}</h2>
                                 <h4>Followings</h4>
                             </div>
                         </div>
                     </div>
                     <div className='profile-bio'>
                         <h3>{profileData?.name}</h3>
-                        <p>{profileData?.metaData?.bio}</p>
+                        <p>{profileData?.bio || 'No Bio Added'}</p>
                     </div>
                     <div className='profile-btns'>
                         <button>Edit Profile</button>
                         <button>Share Profile</button>
                     </div>
                     <div className='posts-section'>
-
+                        {
+                            profileData?.posts?.map((post) => {
+                                return (
+                                    <PostComponent src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
+                                )
+                            })
+                        }
                     </div>
                 </div>
                 <HomeBottom />
