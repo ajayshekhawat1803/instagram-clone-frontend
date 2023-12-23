@@ -6,7 +6,7 @@ import HomeBottom from './HomeBottom'
 import Cookies from 'js-cookie'
 
 const Home = () => {
-  const { isLoggedin } = useContext(context)
+  const { isLoggedin,setIsLoggedIn } = useContext(context)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -14,10 +14,7 @@ const Home = () => {
       console.log('navigated');
       navigate('/login')
     }
-    else {
-      console.log('not navigated logged in ');
-    }
-  }, [])
+  }, [isLoggedin])
 
 
   return (
@@ -25,7 +22,7 @@ const Home = () => {
       <HomeTop />
       <div className='home'>
         Home
-        <button onClick={()=>Cookies.remove('userData')}>logout</button>
+        <button onClick={()=>{Cookies.remove('userData');setIsLoggedIn(false)}}>logout</button>
       </div>
       <HomeBottom />
     </div>

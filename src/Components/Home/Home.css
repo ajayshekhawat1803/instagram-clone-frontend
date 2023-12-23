@@ -4,7 +4,7 @@
     border: 1px solid;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 /*-----------------Home-Top-Section-------------------*/
@@ -33,10 +33,14 @@
 
 /*-----------------Home-Bottom-Section-------------------*/
 .HomeBottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 3px;
+    padding: 8px;
     border-top: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: #fff;
 }
 
 .HomeBottom .footerIcon {

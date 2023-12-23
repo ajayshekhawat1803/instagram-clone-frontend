@@ -7,15 +7,13 @@ import insta from '../../Assets/instalogo.png'
 import settings from '../../Assets/settings.png'
 import axios from 'axios'
 import  { ProfilePostComponent } from '../Other Components/Post'
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify'
 
 
 const Account = () => {
     const { isLoggedin, loggedInUser, token, serverLink, loggedInUserID, serverLinkforImages } = useContext(context)
     const navigate = useNavigate()
     const [profileData, setProfileData] = useState({})
-    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (!isLoggedin) {
@@ -40,23 +38,15 @@ const Account = () => {
                 setProfileData(res.data?.data)
                 setProfileData(res.data?.data);
             } else {
-                setErrorMessage(`Server returned status code ${res.status}`);
-                toast.error(errorMessage); // Show an error toast
+                toast.error(res?.data?.message); // Show an error toast
             }
         } catch (error) {
-            setErrorMessage('Error fetching user data: ' + error.message);
-            toast.error(errorMessage);
+            toast.error('Error fetching user data: ' + error.message);
         }
     }
     return (
         <div className='container-main'>
             <div className='account-page'>
-                <ToastContainer position="top-right" autoClose={5000} bodyClassName="custom-toast-body"
-                    toastStyle={{
-                        background: '#333',
-                        color: '#fff',
-                    }}
-                />
                 <div className='top'>
                     <Link to='/'><img className='insta' src={insta}></img></Link>
                     {/* <h3>{profileData?.username}</h3> */}
@@ -92,9 +82,9 @@ const Account = () => {
                     </div>
                     <div className='posts-section'>
                         {
-                            profileData?.posts?.map((post) => {
+                            profileData?.posts?.map((post,index) => {
                                 return (
-                                    <ProfilePostComponent src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
+                                    <ProfilePostComponent key={index} src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
                                 )
                             })
                         }

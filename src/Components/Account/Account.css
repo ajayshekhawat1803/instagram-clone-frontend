@@ -93,13 +93,13 @@
 
 .account-page .posts-section {
     border-top: 1px solid rgba(0, 0, 0, 0.3);
-    /* flex: 1; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    padding-bottom: 20px;
+    /* overflow-y: scroll; */
 }
 
 .account-page .posts-section .post-box-profile {
-    width: 33%;
-    margin-bottom: 3px;
+    width: 33.33%;
 }

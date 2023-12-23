@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     let storedUserData;
-    console.log(serverLink);
     try {
       storedUserData = JSON.parse(Cookies.get('userData'));
     } catch (error) {
@@ -37,7 +36,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <context.Provider value={{ token, setToken, isLoggedin, loggedInUser, serverLink, serverLinkforImages, setloggedInUser, setIsLoggedIn, setloggedInUserID, loggedInUserID }}>
+        <context.Provider value={{ token, setToken,setIsLoggedIn, isLoggedin, loggedInUser, serverLink, serverLinkforImages, setloggedInUser, setIsLoggedIn, setloggedInUserID, loggedInUserID }}>
           <ToastContainer autoClose={1500} position='top-right' bodyClassName="custom-toast-body"
             toastStyle={{
               background: '#333',
@@ -48,9 +47,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/account' element={<Account />} />
-            <Route path='/post' element={<AddPost />} >
-              <Route path='/post/step-2' element={<h3>Hello</h3>} />
-            </Route>
+            <Route path='/post' element={<AddPost />} />
           </Routes>
         </context.Provider>
       </BrowserRouter >
