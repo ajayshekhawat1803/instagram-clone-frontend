@@ -24,7 +24,7 @@ const Account = () => {
         else {
             getUserData(loggedInUser)
         }
-    }, [])
+    }, [isLoggedin])
 
     const getUserData = async (username) => {
         console.log(username);

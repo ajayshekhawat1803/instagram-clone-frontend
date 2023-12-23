@@ -8,6 +8,7 @@ import Signup from './Components/Signup/Signup';
 import Account from './Components/Account/Account';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AddPost from './Components/Add Post/AddPostSection';
 
 export const context = createContext({});
 function App() {
@@ -15,11 +16,12 @@ function App() {
   const [token, setToken] = useState('')
   const [loggedInUser, setloggedInUser] = useState('')
   const [loggedInUserID, setloggedInUserID] = useState('')
-  const serverLink = `http://localhost:5000/api/v1`
-  const serverLinkforImages = serverLink.split('/api/v1')[0]
+  const serverLink = process.env.REACT_APP_SERVER_URL;
+  const serverLinkforImages = serverLink?.split('/api/v1')[0]
 
   useEffect(() => {
     let storedUserData;
+    console.log(serverLink);
     try {
       storedUserData = JSON.parse(Cookies.get('userData'));
     } catch (error) {
@@ -35,20 +37,23 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <context.Provider value={{ token, setToken, isLoggedin, loggedInUser, serverLink, serverLinkforImages,setloggedInUser, setIsLoggedIn, setloggedInUserID, loggedInUserID }}>
-        <ToastContainer autoClose={1500} position='top-right' bodyClassName="custom-toast-body"
-                    toastStyle={{
-                        background: '#333',
-                        color: '#fff',
-                    }} />
+        <context.Provider value={{ token, setToken, isLoggedin, loggedInUser, serverLink, serverLinkforImages, setloggedInUser, setIsLoggedIn, setloggedInUserID, loggedInUserID }}>
+          <ToastContainer autoClose={1500} position='top-right' bodyClassName="custom-toast-body"
+            toastStyle={{
+              background: '#333',
+              color: '#fff',
+            }} />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/account' element={<Account />} />
+            <Route path='/post' element={<AddPost />} >
+              <Route path='/post/step-2' element={<h3>Hello</h3>} />
+            </Route>
           </Routes>
         </context.Provider>
-      </BrowserRouter>
+      </BrowserRouter >
     </>
   );
 }
