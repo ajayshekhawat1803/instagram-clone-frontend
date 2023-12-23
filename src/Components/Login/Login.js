@@ -12,7 +12,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
-    const { isLoggedin, setIsLoggedIn, setToken, setloggedInUser, setloggedInUserID } = useContext(context)
+    const { isLoggedin, setIsLoggedIn, setToken, setloggedInUser, setloggedInUserID ,serverLink} = useContext(context)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const Login = () => {
         setLoading(true);
         let response;
         try {
-            const response = await axios.post(`http://localhost:5000/api/v1/auth/login`, { username, password });
+            const response = await axios.post(`${serverLink}/auth/login`, { username, password });
         
             if (response.status === 200) {
                 if (response.data.data) {

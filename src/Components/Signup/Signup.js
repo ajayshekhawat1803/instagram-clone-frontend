@@ -17,7 +17,7 @@ const Signup = () => {
     const [registeredId, setRegisteredID] = useState('')
 
     const navigate = useNavigate()
-    const { isLoggedin } = useContext(context)
+    const { isLoggedin ,serverLink} = useContext(context)
     const [uplodedimg, setuploadedImg] = useState('');
     useEffect(() => {
         if (isLoggedin) {
@@ -53,7 +53,7 @@ const Signup = () => {
 
         let res;
         try {
-            res = await axios.post(`http://localhost:5000/api/v1/auth/signup`, userData)
+            res = await axios.post(`${serverLink}/auth/signup`, userData)
         } catch (error) {
             if (error.code === "ERR_NETWORK") {
                 toast.error("Network Error")
@@ -97,7 +97,7 @@ const Signup = () => {
         // userData2.dob = new Date(userData2.dob)
         let res;
         try {
-            res = await axios.post(`http://localhost:5000/api/v1/auth/signup/add-details/${registeredId}`, userData2, {
+            res = await axios.post(`${serverLink}/auth/signup/add-details/${registeredId}`, userData2, {
             // res = await axios.post(`http://localhost:5000/api/v1/auth/signup/add-details/6585c7850b2be642b86ef9b4`, userData2, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
