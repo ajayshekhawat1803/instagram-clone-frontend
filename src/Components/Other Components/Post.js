@@ -15,4 +15,14 @@ const PostComponent = (prop) => {
     )
 }
 
+export const ProfilePostComponent = (prop) => {
+    return (
+        <div className='post-box-profile'>
+            <div className='post-img-box'>
+                <img src={prop.src} />
+            </div>
+        </div>
+    )
+}
+
 export default PostComponent

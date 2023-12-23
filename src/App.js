@@ -6,7 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Signup from './Components/Signup/Signup';
 import Account from './Components/Account/Account';
-import SuccessMessage from './Components/Responses/SuccessMessage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const context = createContext({});
 function App() {
@@ -16,8 +17,6 @@ function App() {
   const [loggedInUserID, setloggedInUserID] = useState('')
   const serverLink = `http://localhost:5000/api/v1`
   const serverLinkforImages = serverLink.split('/api/v1')[0]
-
-  const [succMessage, setSuccMessage] = useState('')
 
   useEffect(() => {
     let storedUserData;
@@ -37,7 +36,11 @@ function App() {
     <>
       <BrowserRouter>
         <context.Provider value={{ token, setToken, isLoggedin, loggedInUser, serverLink, serverLinkforImages,setloggedInUser, setIsLoggedIn, setloggedInUserID, loggedInUserID }}>
-          {/* <SuccessMessage message={succMessage} /> */}
+        <ToastContainer autoClose={1500} position='top-right' bodyClassName="custom-toast-body"
+                    toastStyle={{
+                        background: '#333',
+                        color: '#fff',
+                    }} />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />

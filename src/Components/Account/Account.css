@@ -7,6 +7,10 @@
     justify-content: space-between;
 }
 
+.account-page .top h3 {
+    text-decoration: underline;
+}
+
 .account-page div.main {
     width: 100%;
     flex: 1;
@@ -41,6 +45,12 @@
     border-radius: 50%;
     width: 70px;
     height: 70px;
+    overflow: hidden;
+}
+
+.account-page .profile-top .profile-pic img {
+    width: 100%;
+    height: 100%;
 }
 
 .account-page .profile-top .profile-data-right {
@@ -83,11 +93,13 @@
 
 .account-page .posts-section {
     border-top: 1px solid rgba(0, 0, 0, 0.3);
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.account-page .posts-section .post-box {
+.account-page .posts-section .post-box-profile {
     width: 33%;
+    margin-bottom: 3px;
 }

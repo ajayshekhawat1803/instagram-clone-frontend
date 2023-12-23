@@ -6,7 +6,7 @@ import './Account.css'
 import insta from '../../Assets/instalogo.png'
 import settings from '../../Assets/settings.png'
 import axios from 'axios'
-import PostComponent from '../Other Components/Post'
+import  { ProfilePostComponent } from '../Other Components/Post'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -59,12 +59,13 @@ const Account = () => {
                 />
                 <div className='top'>
                     <Link to='/'><img className='insta' src={insta}></img></Link>
+                    {/* <h3>{profileData?.username}</h3> */}
                     <Link to='/'><img src={settings}></img></Link>
                 </div>
                 <div className='main'>
                     <div className='profile-top'>
                         <div className='profile-pic'>
-
+                            <img src={`${serverLinkforImages}/uploads/${loggedInUserID}/photo/${profileData?.photo}` || ''} alt='profile' />
                         </div>
                         <div className='profile-data-right'>
                             <div className='data-box'>
@@ -93,9 +94,13 @@ const Account = () => {
                         {
                             profileData?.posts?.map((post) => {
                                 return (
-                                    <PostComponent src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
+                                    <ProfilePostComponent src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
                                 )
                             })
+                        }
+                        {
+                            profileData?.posts?.length ? "" : <h3>No Posts yet</h3>
+
                         }
                     </div>
                 </div>
