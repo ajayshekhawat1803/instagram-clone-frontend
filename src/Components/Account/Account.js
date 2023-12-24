@@ -6,14 +6,16 @@ import './Account.css'
 import insta from '../../Assets/instalogo.png'
 import settings from '../../Assets/settings.png'
 import axios from 'axios'
-import  { ProfilePostComponent } from '../Other Components/Post'
+import { ProfilePostComponent } from '../Other Components/Post'
 import { toast } from 'react-toastify'
+import Followers from '../Followers/Followers'
 
 
 const Account = () => {
     const { isLoggedin, loggedInUser, token, serverLink, loggedInUserID, serverLinkforImages } = useContext(context)
     const navigate = useNavigate()
     const [profileData, setProfileData] = useState({})
+    const [ShowFollowers, SetShowFollowers] = useState(false)
 
     useEffect(() => {
         if (!isLoggedin) {
@@ -57,12 +59,13 @@ const Account = () => {
                         <div className='profile-pic'>
                             <img src={`${serverLinkforImages}/uploads/${loggedInUserID}/photo/${profileData?.photo}` || ''} alt='profile' />
                         </div>
+
                         <div className='profile-data-right'>
                             <div className='data-box'>
                                 <h2>{profileData?.posts?.length || 0}</h2>
                                 <h4>Posts</h4>
                             </div>
-                            <div className='data-box'>
+                            <div className='data-box' onClick={() => SetShowFollowers(!ShowFollowers)}>
                                 <h2>{profileData?.followers?.length || 0}</h2>
                                 <h4>Followers</h4>
                             </div>
@@ -71,18 +74,22 @@ const Account = () => {
                                 <h4>Followings</h4>
                             </div>
                         </div>
+
                     </div>
+
                     <div className='profile-bio'>
                         <h3>{profileData?.name}</h3>
                         <p>{profileData?.bio || 'No Bio Added'}</p>
                     </div>
+
                     <div className='profile-btns'>
                         <button>Edit Profile</button>
                         <button>Share Profile</button>
                     </div>
+
                     <div className='posts-section'>
                         {
-                            profileData?.posts?.map((post,index) => {
+                            profileData?.posts?.map((post, index) => {
                                 return (
                                     <ProfilePostComponent key={index} src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
                                 )
@@ -94,6 +101,14 @@ const Account = () => {
                         }
                     </div>
                 </div>
+                {
+                    ShowFollowers &&
+                    <Followers
+                        id={loggedInUserID}
+                        SetShowFollowers={SetShowFollowers}
+                        ShowFollowers={ShowFollowers}
+                    />
+                }
                 <HomeBottom />
             </div>
         </div>

@@ -1,0 +1,21 @@
+.followers-box {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid;
+    position: absolute;
+    top: 30%;
+    background-color: #fff;
+    height: 70%;
+    overflow-y: scroll;
+}
+
+.followers-box .top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.followers-box .top img {
+    height: 25px;
+}
