@@ -17,7 +17,7 @@ const Signup = () => {
     const [registeredId, setRegisteredID] = useState('')
 
     const navigate = useNavigate()
-    const { isLoggedin ,serverLink} = useContext(context)
+    const { isLoggedin, serverLink } = useContext(context)
     const [uplodedimg, setuploadedImg] = useState('');
     useEffect(() => {
         if (isLoggedin) {
@@ -28,7 +28,10 @@ const Signup = () => {
     }, [isLoggedin])
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+        if (name === "username") {
+            value = value.toLowerCase()
+        }
         setUserData({ ...userData, [name]: value })
         setUserData2({ ...userData2, [name]: value })
         delete validationError[name]
@@ -72,8 +75,6 @@ const Signup = () => {
             setRegisteredID(res.data.data._id)
         }
         if (res?.status > 400 && res?.status <= 499) {
-            // console.log(res);
-            // toast.error(res.data.message)
             if (res?.data.message) {
                 const field = res.data.message.split(' ')[0];
                 setValidationError({ [field]: res.data.message })
@@ -98,7 +99,7 @@ const Signup = () => {
         let res;
         try {
             res = await axios.post(`${serverLink}/auth/signup/add-details/${registeredId}`, userData2, {
-            // res = await axios.post(`http://localhost:5000/api/v1/auth/signup/add-details/6585c7850b2be642b86ef9b4`, userData2, {
+                // res = await axios.post(`http://localhost:5000/api/v1/auth/signup/add-details/6585c7850b2be642b86ef9b4`, userData2, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }

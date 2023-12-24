@@ -30,7 +30,7 @@
 }
 
 .account-page .top img.insta {
-    scale: 1.7;
+    scale: 1.9;
     padding-left: 7px;
 }
 
@@ -67,6 +67,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 
 .account-page .profile-bio {
@@ -83,13 +84,14 @@
 
 .account-page .profile-btns button {
     padding: 5px;
-    width: 100px;
+    width: 130px;
     font-size: 1rem;
     border: none;
     background-color: #efefef;
     border-radius: 5px;
     margin-right: 20px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .account-page .posts-section {

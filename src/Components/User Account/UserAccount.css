@@ -1,0 +1,8 @@
+.account-page .profile-btns button.follow-btn {
+    background-color: blue;
+    color: #fff;
+}
+.account-page .profile-btns button.follow-btn:hover {
+    background-color: rgb(81, 81, 248);
+    color: #fff;
+}

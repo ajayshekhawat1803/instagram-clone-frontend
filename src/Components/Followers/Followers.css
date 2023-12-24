@@ -19,3 +19,30 @@
 .followers-box .top img {
     height: 25px;
 }
+
+.allFollowers {
+    padding: 10px 0;
+}
+
+.allFollowers .follower-user-box {
+    box-shadow: 1px 1px 3px rgb(249, 152, 152), -1px -1px 3px rgb(129, 211, 255);
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.allFollowers .follower-user-box img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.allFollowers .follower-user-box div h2 {
+    color: red;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}

@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AddPost from './Components/Add Post/AddPostSection';
 import Search from './Components/Search/Search';
+import UserAccount from './Components/User Account/UserAccount';
 
 export const context = createContext({});
 function App() {
@@ -50,6 +51,7 @@ function App() {
             <Route path='/signup' element={<Signup />} />
             <Route path='/account' element={<Account />} />
             <Route path='/post' element={<AddPost />} />
+            <Route path='/user/:username' element={<UserAccount />} />
           </Routes>
         </context.Provider>
       </BrowserRouter >

@@ -4,12 +4,13 @@ import close from '../../Assets/cancel.png'
 import { context } from '../../App';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Followers = (props) => {
     const { id, SetShowFollowers, ShowFollowers } = props;
     const [followers, setFollowers] = useState([])
-    const { serverLink, token } = useContext(context)
-
+    const { serverLink, token, serverLinkforImages } = useContext(context)
+    const navigate = useNavigate()
     useEffect(() => {
         FetchFollowers(id)
     }, [])
@@ -50,17 +51,29 @@ const Followers = (props) => {
                     alt='Close'
                     onClick={() => SetShowFollowers(!ShowFollowers)} />
             </div>
-            <div className='allFollowers'>
+            <div className='allFollowers '>
                 {
-                    followers.map((follower, index) => {
-                        return <h3 key={index}>{follower}</h3>
+                    followers?.map((follower) => {
+                        return (
+                            <div className='follower-user-box' key={follower._id}
+                                onClick={() => {
+                                    SetShowFollowers(false)
+                                    navigate(`/user/${follower.username}`)
+                                }}>
+                                <img src={`${serverLinkforImages}/uploads/${follower._id}/photo/${follower.photo}`} />
+                                <div>
+                                    <h2>{follower.username}</h2>
+                                    <h3>{follower.name}</h3>
+                                </div>
+                            </div>
+                        )
                     })
                 }
                 {
                     followers?.length < 1 ? "No Followers" : ""
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

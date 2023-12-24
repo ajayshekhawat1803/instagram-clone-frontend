@@ -27,7 +27,6 @@ const Account = () => {
     }, [isLoggedin])
 
     const getUserData = async (username) => {
-        console.log(username);
         try {
             const res = await axios.get(`${serverLink}/user/username/${username}`, {
                 headers: {
@@ -38,7 +37,6 @@ const Account = () => {
             // console.log(res);
             if (res.status === 200) {
                 setProfileData(res.data?.data)
-                setProfileData(res.data?.data);
             } else {
                 toast.error(res?.data?.message); // Show an error toast
             }

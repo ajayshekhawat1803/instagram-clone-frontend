@@ -71,7 +71,7 @@ const Search = () => {
                                     searchResults.map((user) => {
                                         return (
                                             <div className='searched-user-box' key={user._id}
-                                            onClick={()=>navigate(`/user/${user._id}`)}>
+                                            onClick={()=>navigate(`/user/${user.username}`)}>
                                                 <img src={`${serverLinkforImages}/uploads/${user._id}/photo/${user.photo}`} />
                                                 <div>
                                                     <h2>{user.username}</h2>

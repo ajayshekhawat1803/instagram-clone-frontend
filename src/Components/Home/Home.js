@@ -11,7 +11,6 @@ const Home = () => {
 
   useEffect(() => {
     if (!isLoggedin) {
-      console.log('navigated');
       navigate('/login')
     }
   }, [isLoggedin])
