@@ -1,0 +1,82 @@
+.search-container {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    padding: 15px;
+}
+
+.search-container>input {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.search-container .search-results {
+    border-radius: 7px;
+    padding: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+/* Style the custom scrollbar */
+.search-container .search-results::-webkit-scrollbar {
+    width: 5px;
+}
+
+.search-container .search-results::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.search-container .search-results::-webkit-scrollbar-thumb {
+    background: #cdcccc;
+    border-radius: 6px;
+}
+
+.search-container .search-results::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.search-container .search-results .searched-user-box {
+    box-shadow: 1px 1px 3px rgb(249, 152, 152), -1px -1px 3px rgb(129, 211, 255);
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.search-container .search-results .searched-user-box img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.search-container .search-results div h2 {
+    color: red;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+.search-container #viewalluserbtn {
+    display: block;
+    width: 200px;
+    font-size: 1.2rem;
+    margin: 20px auto;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-weight: 600;
+    color: #fff;
+    background-color: blue;
+    cursor: pointer;
+}

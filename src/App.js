@@ -9,6 +9,7 @@ import Account from './Components/Account/Account';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AddPost from './Components/Add Post/AddPostSection';
+import Search from './Components/Search/Search';
 
 export const context = createContext({});
 function App() {
@@ -44,6 +45,7 @@ function App() {
             }} />
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/search' element={<Search />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/account' element={<Account />} />
