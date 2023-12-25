@@ -8,7 +8,8 @@ import settings from '../../Assets/settings.png'
 import axios from 'axios'
 import { ProfilePostComponent } from '../Other Components/Post'
 import { toast } from 'react-toastify'
-import Followers from '../Followers/Followers'
+import Followers from '../Followers-Followings/Followers'
+import Followings from '../Followers-Followings/Followings'
 
 
 const Account = () => {
@@ -16,6 +17,7 @@ const Account = () => {
     const navigate = useNavigate()
     const [profileData, setProfileData] = useState({})
     const [ShowFollowers, SetShowFollowers] = useState(false)
+    const [ShowFollowings, SetShowFollowings] = useState(false)
 
     useEffect(() => {
         if (!isLoggedin) {
@@ -63,11 +65,17 @@ const Account = () => {
                                 <h2>{profileData?.posts?.length || 0}</h2>
                                 <h4>Posts</h4>
                             </div>
-                            <div className='data-box' onClick={() => SetShowFollowers(!ShowFollowers)}>
+                            <div className='data-box' onClick={() => {
+                                SetShowFollowers(!ShowFollowers)
+                                SetShowFollowings(false)
+                            }}>
                                 <h2>{profileData?.followers?.length || 0}</h2>
                                 <h4>Followers</h4>
                             </div>
-                            <div className='data-box'>
+                            <div className='data-box' onClick={() => {
+                                SetShowFollowers(false)
+                                SetShowFollowings(!ShowFollowings)
+                            }}>
                                 <h2>{profileData?.followings?.length || 0}</h2>
                                 <h4>Followings</h4>
                             </div>
@@ -106,6 +114,15 @@ const Account = () => {
                         SetShowFollowers={SetShowFollowers}
                         ShowFollowers={ShowFollowers}
                     />
+                }
+                {
+                    ShowFollowings &&
+                    <Followings
+                        id={loggedInUserID}
+                        SetShowFollowings={SetShowFollowings}
+                        ShowFollowings={ShowFollowings}
+                    />
+
                 }
                 <HomeBottom />
             </div>

@@ -1,4 +1,5 @@
-.followers-box {
+.followers-box,
+.followings-box {
     width: 100%;
     padding: 15px;
     border-radius: 5px;
@@ -10,21 +11,25 @@
     overflow-y: scroll;
 }
 
-.followers-box .top {
+.followers-box .top,
+.followings-box .top {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.followers-box .top img {
+.followers-box .top img,
+.followings-box .top img {
     height: 25px;
 }
 
-.allFollowers {
+.allFollowers,
+.allFollowings {
     padding: 10px 0;
 }
 
-.allFollowers .follower-user-box {
+.allFollowers .follower-user-box,
+.allFollowings .following-user-box {
     box-shadow: 1px 1px 3px rgb(249, 152, 152), -1px -1px 3px rgb(129, 211, 255);
     border-radius: 5px;
     width: 100%;
@@ -36,12 +41,15 @@
     cursor: pointer;
 }
 
-.allFollowers .follower-user-box img{
+.allFollowers .follower-user-box img,
+.allFollowings .following-user-box img {
     width: 70px;
     height: 70px;
     border-radius: 50%;
 }
-.allFollowers .follower-user-box div h2 {
+
+.allFollowers .follower-user-box div h2,
+.allFollowers .following-user-box div h2 {
     color: red;
     text-decoration: underline;
     margin-bottom: 5px;

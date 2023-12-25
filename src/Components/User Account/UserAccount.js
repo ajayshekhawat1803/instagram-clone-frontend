@@ -6,9 +6,10 @@ import HomeBottom from '../Home/HomeBottom';
 import insta from '../../Assets/instalogo.png'
 import settings from '../../Assets/settings.png'
 import { ProfilePostComponent } from '../Other Components/Post';
-import Followers from '../Followers/Followers';
+import Followers from '../Followers-Followings/Followers';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Followings from '../Followers-Followings/Followings';
 
 const UserAccount = () => {
     const { isLoggedin, loggedInUser, token, serverLink, loggedInUserID, serverLinkforImages } = useContext(context)
@@ -16,6 +17,7 @@ const UserAccount = () => {
     const [selfAccount, setIsSelfAccount] = useState(false)
     const [isFollowing, setIsFollowing] = useState(false)
     const [ShowFollowers, SetShowFollowers] = useState(false)
+    const [ShowFollowings, SetShowFollowings] = useState(false)
     const { username: paramUsername } = useParams(); // Get the username from the URL parameters
 
     const navigate = useNavigate()
@@ -159,11 +161,18 @@ const UserAccount = () => {
                                 <h2>{profileData?.posts?.length || 0}</h2>
                                 <h4>Posts</h4>
                             </div>
-                            <div className='data-box' onClick={() => SetShowFollowers(!ShowFollowers)}>
+                            <div className='data-box' onClick={() => {
+                                SetShowFollowers(!ShowFollowers)
+                                SetShowFollowings(false)
+                            }
+                            }>
                                 <h2>{profileData?.followers?.length || 0}</h2>
                                 <h4>Followers</h4>
                             </div>
-                            <div className='data-box'>
+                            <div className='data-box' onClick={() => {
+                                SetShowFollowings(!ShowFollowings)
+                                SetShowFollowers(false)
+                            }}>
                                 <h2>{profileData?.followings?.length || 0}</h2>
                                 <h4>Followings</h4>
                             </div>
@@ -210,6 +219,14 @@ const UserAccount = () => {
                         id={profileData?._id}
                         SetShowFollowers={SetShowFollowers}
                         ShowFollowers={ShowFollowers}
+                    />
+                }
+                {
+                    ShowFollowings &&
+                    <Followings
+                        id={profileData?._id}
+                        SetShowFollowings={SetShowFollowings}
+                        ShowFollowings={ShowFollowings}
                     />
                 }
                 <HomeBottom />
