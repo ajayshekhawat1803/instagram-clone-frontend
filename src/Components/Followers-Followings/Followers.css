@@ -1,15 +1,40 @@
 .followers-box,
 .followings-box {
-    width: 100%;
+    width: 94%;
+    margin: auto;
     padding: 15px;
     border-radius: 5px;
-    border: 2px solid;
+    /* border: 1px solid; */
+    box-shadow: 1px 1px 3px rgb(249, 152, 152), -1px -1px 3px rgb(129, 211, 255);
     position: absolute;
     top: 30%;
+    left: 3%;
     background-color: #fff;
     height: 70%;
     overflow-y: scroll;
 }
+
+.followers-box::-webkit-scrollbar,
+.followings-box::-webkit-scrollbar {
+    width: 5px;
+}
+
+.followers-box::-webkit-scrollbar-track,
+.followings-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.followers-box::-webkit-scrollbar-thumb,
+.followings-box::-webkit-scrollbar-thumb {
+    background: #cdcccc;
+    border-radius: 6px;
+}
+
+.followers-box::-webkit-scrollbar-thumb:hover,
+.followings-box::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 
 .followers-box .top,
 .followings-box .top {
@@ -21,6 +46,7 @@
 .followers-box .top img,
 .followings-box .top img {
     height: 25px;
+    cursor: pointer;
 }
 
 .allFollowers,
@@ -49,7 +75,7 @@
 }
 
 .allFollowers .follower-user-box div h2,
-.allFollowers .following-user-box div h2 {
+.allFollowings .following-user-box div h2 {
     color: red;
     text-decoration: underline;
     margin-bottom: 5px;

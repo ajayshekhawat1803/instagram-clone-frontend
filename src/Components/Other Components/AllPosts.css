@@ -1,0 +1,18 @@
+.AllUserPosts {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    min-height: 100vh;
+}
+
+.AllUserPosts .top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 5px;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
+    box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.AllUserPosts .top img {
+    height: 25px;
+    cursor: pointer;
+}

@@ -97,7 +97,11 @@ const Account = () => {
                         {
                             profileData?.posts?.map((post, index) => {
                                 return (
-                                    <ProfilePostComponent key={index} src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
+                                    <ProfilePostComponent
+                                        key={index}
+                                        postID={post.postID}
+                                        user={profileData?.username}
+                                        src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
                                 )
                             })
                         }

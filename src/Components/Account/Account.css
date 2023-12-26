@@ -101,6 +101,7 @@
     justify-content: flex-start;
     padding-bottom: 20px;
     /* overflow-y: scroll; */
+    overflow-x: hidden;
 }
 
 .account-page .posts-section .post-box-profile {

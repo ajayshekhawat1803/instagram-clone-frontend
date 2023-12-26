@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AddPost from './Components/Add Post/AddPostSection';
 import Search from './Components/Search/Search';
 import UserAccount from './Components/User Account/UserAccount';
+import AllPosts from './Components/Other Components/AllPosts';
 
 export const context = createContext({});
 function App() {
@@ -52,6 +53,7 @@ function App() {
             <Route path='/account' element={<Account />} />
             <Route path='/post' element={<AddPost />} />
             <Route path='/user/:username' element={<UserAccount />} />
+            <Route path='/posts/:username' element={<AllPosts />} />
           </Routes>
         </context.Provider>
       </BrowserRouter >
