@@ -30,12 +30,13 @@ const Account = () => {
 
     const getUserData = async (username) => {
         try {
-            const res = await axios.get(`${serverLink}/user/username/${username}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                }
-            });
+            const res = await axios.get(`${serverLink}/user/username/${username}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+                });
             // console.log(res);
             if (res.status === 200) {
                 setProfileData(res.data?.data)

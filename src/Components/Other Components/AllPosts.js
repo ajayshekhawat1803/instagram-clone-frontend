@@ -45,7 +45,6 @@ const AllPosts = (props) => {
             }
         }
         if (res.status === 200) {
-            console.log(res);
             setUserID(res?.data?.data?._id)
             setAllPosts(res?.data?.data?.posts)
         }
@@ -68,10 +67,9 @@ const AllPosts = (props) => {
                             // console.log(post);
                             return (
                                 <PostComponent
-                                    postID={post.postID}
+                                    post={post}
+                                    postOwnerId={userID}
                                     username={paramUsername}
-                                    caption={post.caption}
-                                    metaData={post.metaData}
                                     src={`${serverLinkforImages}/uploads/${userID}/posts/${post?.files[0]}`}
                                 />
                             )
