@@ -64,9 +64,9 @@ const AllPosts = (props) => {
                 <div className='All-posts-section'>
                     {
                         AllPosts?.map((post) => {
-                            // console.log(post);
                             return (
                                 <PostComponent
+                                    key={post._id}
                                     post={post}
                                     postOwnerId={userID}
                                     username={paramUsername}

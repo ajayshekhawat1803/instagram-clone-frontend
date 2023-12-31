@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './post.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -10,13 +10,21 @@ import { context } from '../../App'
 import { toast } from 'react-toastify'
 
 const PostComponent = (prop) => {
-    let { postID, caption } = prop.post
+    const postID = prop.post._id
+    let { caption } = prop.post
     const { serverLink, token, loggedInUserID } = useContext(context)
     const [metaData, setMetaData] = useState(prop.post.metaData)
     const [showComments, setShowComments] = useState(false)
     const src = prop.src
-    const postOwnerId = prop.postOwnerId
+    const postOwnerId = prop.post.user
     const username = prop.username
+    const [newComment, setNewComment] = useState("")
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        fetchComments()
+    }, [showComments])
 
     const HandleLike = async (postOwnerId, postID) => {
         let res;
@@ -44,11 +52,83 @@ const PostComponent = (prop) => {
             }
         }
         if (res?.status === 201) {
-            setMetaData(res.data?.data?.metaData)
+            console.log(res.data?.data?.metaData.likes)
+            setMetaData({ ...metaData, likes: res.data?.data?.metaData?.likes })
         }
         else {
             toast.error(res.data.message)
         }
+    }
+
+    const fetchComments = async () => {
+        let res;
+        try {
+            res = await axios.get(`${serverLink}/comments/?postId=${postID}&postOwnerId=${postOwnerId}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+                }
+            )
+        } catch (error) {
+            if (error.code === "ERR_NETWORK") {
+                toast.error("Network Error")
+            }
+            if (error.response) {
+                res = error.response
+            }
+            else {
+                toast.error(error.message)
+            }
+        }
+        if (res?.status === 200) {
+            if (res.data.data) {
+                setMetaData(res.data?.data?.metaData)
+            }
+        }
+        else {
+            toast.error(res.data.message)
+        }
+    }
+
+    const HandleAddComment = async () => {
+        let res;
+        try {
+            res = await axios.post(`${serverLink}/comments/add`,
+                {
+                    postId: postID,
+                    postOwnerId: postOwnerId,
+                    comment: newComment
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+                }
+            )
+        } catch (error) {
+            if (error.code === "ERR_NETWORK") {
+                toast.error("Network Error")
+            }
+            if (error.response) {
+                res = error.response
+            }
+            else {
+                toast.error(error.message)
+            }
+        }
+        if (res?.status === 200 || 201) {
+            if (res.data.data) {
+                toast.success("Comment added")
+            }
+            setNewComment("")
+        }
+        else {
+            toast.error(res.data.message)
+        }
+        setShowComments(false)
     }
 
     return (
@@ -64,18 +144,32 @@ const PostComponent = (prop) => {
                 <img src={comment} alt='comment' onClick={() => setShowComments(!showComments)} />
             </div>
             <div className='content'>
-                <h5>{username}</h5>
+                <h5 onClick={() => navigate(`/user/${username}`)}>{username}</h5>
                 <p>{caption}</p>
             </div>
             {
                 showComments &&
                 <div className='comment-section'>
-                    <div className='add-comment'>
-                        <input placeholder='Add your comment' />
-                        <img src={send} />
-                    </div>
+                    <p>{metaData?.comments?.length} comments</p>
+                    {
+                        metaData?.comments?.map((comment, index) => {
+                            return (
+                                <div className='comment-box' key={index}>
+                                    <h4 onClick={() => navigate(`/user/${comment?.user?.username}`)}>{comment?.user?.username}</h4>
+                                    <p>{comment?.comment}</p>
+                                </div>
+                            )
+                        })
+                    }
+
                 </div>
             }
+            <div className='comment-section'>
+                <div className='add-comment'>
+                    <input placeholder='Add your comment' value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+                    <img src={send} onClick={HandleAddComment} />
+                </div>
+            </div>
         </div>
     )
 }

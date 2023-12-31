@@ -5,6 +5,11 @@
   font-family: 'raleway';
 }
 
+/* #root{
+  max-width: 600px;
+  position: relative;
+} */
+
 .container-main {
   width: 100%;
   min-height: 100vh;

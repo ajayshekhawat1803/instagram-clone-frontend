@@ -21,6 +21,7 @@
     font-weight: bold;
     font-size: 1rem;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .post-box .post-img-box {
@@ -51,13 +52,19 @@
 
 .post-box .comment-section {
     padding-top: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
 }
-
+.post-box .comment-section>p{
+    padding: 0px 7px;
+    font-size: 0.8rem;
+    color: #555;
+}
 .post-box .comment-section .add-comment {
     display: flex;
     align-items: center;
     padding: 0 10px;
     gap: 4px;
+    padding-bottom: 8px;
 }
 
 .post-box .comment-section .add-comment input {
@@ -73,9 +80,18 @@
 
 .post-box .comment-section .add-comment img {
     height: 20px;
+    cursor: pointer;
 }
 
-
+.post-box .comment-section .comment-box{
+    display: flex;
+    padding: 2px 7px;
+    gap: 5px;
+}
+.post-box .comment-section .comment-box h4{
+ text-decoration: underline;
+ cursor: pointer;
+}
 
 
 
