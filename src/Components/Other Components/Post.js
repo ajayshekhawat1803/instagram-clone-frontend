@@ -12,13 +12,15 @@ import { toast } from 'react-toastify'
 const PostComponent = (prop) => {
     const postID = prop.post._id
     let { caption } = prop.post
-    const { serverLink, token, loggedInUserID } = useContext(context)
+    const { serverLink, token, loggedInUserID,serverLinkforImages } = useContext(context)
     const [metaData, setMetaData] = useState(prop.post.metaData)
     const [showComments, setShowComments] = useState(false)
     const src = prop.src
     const postOwnerId = prop.post.user
     const username = prop.username
     const [newComment, setNewComment] = useState("")
+    
+    const userPhotoSrc = prop.userPhoto
 
     const navigate = useNavigate()
 
@@ -52,7 +54,6 @@ const PostComponent = (prop) => {
             }
         }
         if (res?.status === 201) {
-            console.log(res.data?.data?.metaData.likes)
             setMetaData({ ...metaData, likes: res.data?.data?.metaData?.likes })
         }
         else {
@@ -133,6 +134,12 @@ const PostComponent = (prop) => {
 
     return (
         <div className='post-box'>
+            <div className='post-box-top-section-cont'>
+                <div className='post-box-top-section'>
+                    <img src={userPhotoSrc} alt=''/>
+                    <h4 onClick={() => navigate(`/user/${username}`)}>{username}</h4>
+                </div>
+            </div>
             <div className='post-img-box'>
                 <img src={src} />
             </div>
@@ -143,10 +150,13 @@ const PostComponent = (prop) => {
                 </div>
                 <img src={comment} alt='comment' onClick={() => setShowComments(!showComments)} />
             </div>
-            <div className='content'>
-                <h5 onClick={() => navigate(`/user/${username}`)}>{username}</h5>
-                <p>{caption}</p>
-            </div>
+            {
+                caption &&
+                <div className='content'>
+                    <h5 onClick={() => navigate(`/user/${username}`)}>{username}</h5>
+                    <p>{caption}</p>
+                </div>
+            }
             {
                 showComments &&
                 <div className='comment-section'>

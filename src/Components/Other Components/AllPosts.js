@@ -12,7 +12,7 @@ const AllPosts = (props) => {
     const { username: paramUsername } = useParams(); // Get the username from the URL parameters
     const [AllPosts, setAllPosts] = useState([])
     const [userID, setUserID] = useState("")
-
+    const [userPhoto, setUserPhoto] = useState("")
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -47,6 +47,7 @@ const AllPosts = (props) => {
         if (res.status === 200) {
             setUserID(res?.data?.data?._id)
             setAllPosts(res?.data?.data?.posts)
+            setUserPhoto(res?.data?.data?.photo)
         }
         else {
             toast.error(res?.data?.message);
@@ -71,6 +72,7 @@ const AllPosts = (props) => {
                                     postOwnerId={userID}
                                     username={paramUsername}
                                     src={`${serverLinkforImages}/uploads/${userID}/posts/${post?.files[0]}`}
+                                    userPhoto={`${serverLinkforImages}/uploads/${userID}/photo/${userPhoto}`}
                                 />
                             )
                         })
