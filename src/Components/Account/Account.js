@@ -29,8 +29,9 @@ const Account = () => {
     }, [isLoggedin])
 
     const getUserData = async (username) => {
+        let res;
         try {
-            const res = await axios.get(`${serverLink}/user/username/${username}`,
+            res = await axios.get(`${serverLink}/user/username/${username}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -44,7 +45,12 @@ const Account = () => {
                 toast.error(res?.data?.message); // Show an error toast
             }
         } catch (error) {
-            toast.error('Error fetching user data: ' + error.message);
+            if (error.response) {
+                res = error.response
+                toast.error(res.data.message);
+            } else {
+                toast.error(error.message);
+            }
         }
     }
     return (

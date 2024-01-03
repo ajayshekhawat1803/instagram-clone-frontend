@@ -12,7 +12,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
-    const { isLoggedin, setIsLoggedIn, setToken, setloggedInUser, setloggedInUserID ,serverLink} = useContext(context)
+    const { isLoggedin, setIsLoggedIn, setToken, setloggedInUser, setloggedInUserID, serverLink } = useContext(context)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -29,8 +29,8 @@ const Login = () => {
         setLoading(true);
         let response;
         try {
-            const response = await axios.post(`${serverLink}/auth/login`, { username, password });
-        
+            response = await axios.post(`${serverLink}/auth/login`, { username, password });
+
             if (response.status === 200) {
                 if (response.data.data) {
                     // Successful login
@@ -50,17 +50,19 @@ const Login = () => {
                     toast.error(response.data.message);
                 }
             } else if (response.status === 401) {
-                // Handle unauthorized access (e.g., redirect to login)
                 toast.error('Unauthorized access. Please login again.');
-                // Additional actions for unauthorized access, such as redirecting to the login page
             } else {
-                // Handle other status codes if needed
                 toast.error(`Unexpected status code: ${response.status}`);
             }
-        
+
         } catch (error) {
             setLoading(false);
-            toast.error('An unexpected error occurred. Please try again later.');
+            if (error.response) {
+                response = error.response
+                toast.error(`${response.data.message}`);
+            } else {
+                toast.error(`${error.message}`);
+            }
         }
         setLoading(false);
         // console.log(response);
