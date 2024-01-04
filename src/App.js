@@ -39,9 +39,9 @@ function App() {
   }, []);
 
   // This function is just to keep the server live so that it wont go to sleep mode due to inactive requests
-  setInterval(() => {
-    axios.get(`${serverLink}/health`)
-  }, 840000);
+  // setInterval(() => {
+  //   axios.get(`${serverLink}/health`)
+  // }, 840000);
 
   return (
     <>
