@@ -1,0 +1,21 @@
+.feed-container {
+    border: 1px solid;
+}
+
+.feed-container .feed-cont{
+    padding-bottom: 25px;
+}
+
+
+
+.feed-container .no-feed-box {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.feed-container .no-feed-box h3 {
+    -webkit-text-stroke:1px rgba(0, 0, 0, 0.5) ;
+}
