@@ -12,6 +12,7 @@ import AddPost from './Components/Add Post/AddPostSection';
 import Search from './Components/Search/Search';
 import UserAccount from './Components/User Account/UserAccount';
 import AllPosts from './Components/Other Components/AllPosts';
+import axios from 'axios';
 
 export const context = createContext({});
 function App() {
@@ -36,10 +37,16 @@ function App() {
       setIsLoggedIn(true)
     }
   }, []);
+
+  // This function is just to keep the server live so that it wont go to sleep mode due to inactive requests
+  setInterval(() => {
+    axios.get(`${serverLink}/health`)
+  }, 840000);
+
   return (
     <>
       <BrowserRouter>
-        <context.Provider value={{ token, setToken,setIsLoggedIn, isLoggedin, loggedInUser, serverLink, serverLinkforImages, setloggedInUser, setIsLoggedIn, setloggedInUserID, loggedInUserID }}>
+        <context.Provider value={{ token, setToken, setIsLoggedIn, isLoggedin, loggedInUser, serverLink, serverLinkforImages, setloggedInUser, setIsLoggedIn, setloggedInUserID, loggedInUserID }}>
           <ToastContainer autoClose={1500} position='top-right' bodyClassName="custom-toast-body"
             toastStyle={{
               background: '#333',
