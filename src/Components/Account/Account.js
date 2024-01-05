@@ -102,15 +102,17 @@ const Account = () => {
 
                     <div className='posts-section'>
                         {
-                            profileData?.posts?.map((post, index) => {
-                                return (
-                                    <ProfilePostComponent
-                                        key={index}
-                                        postID={post._id}
-                                        user={profileData?.username}
-                                        src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post.files[0]}`} />
-                                )
-                            })
+                            profileData?.posts?.length > 0
+                                ? profileData?.posts?.map((post, index) => {
+                                    return (
+                                        <ProfilePostComponent
+                                            key={index}
+                                            postID={post?._id}
+                                            user={profileData?.username}
+                                            src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post?.files[0]}`} />
+                                    )
+                                })
+                                : ""
                         }
                         {
                             profileData?.posts?.length ? "" : <h3>No Posts yet</h3>
