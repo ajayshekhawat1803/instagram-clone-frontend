@@ -1,0 +1,29 @@
+.notifications-cont-main {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.notifications-cont-main::-webkit-scrollbar {
+    width: 5px;
+}
+
+.notifications-cont-main::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.notifications-cont-main::-webkit-scrollbar-thumb {
+    background: #cdcccc;
+    border-radius: 6px;
+}
+
+.notifications-cont-main::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.notifications-cont-main #main-head-notifications {
+    padding: 5px;
+    box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.3);
+    padding-left: 15px;
+}

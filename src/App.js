@@ -13,6 +13,7 @@ import Search from './Components/Search/Search';
 import UserAccount from './Components/User Account/UserAccount';
 import AllPosts from './Components/Other Components/AllPosts';
 import axios from 'axios';
+import Notifications from './Components/notifications/Notifications';
 
 export const context = createContext({});
 function App() {
@@ -57,6 +58,7 @@ function App() {
             <Route path='/search' element={<Search />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
+            <Route path='/notifications' element={<Notifications />} />
             <Route path='/account' element={<Account />} />
             <Route path='/post' element={<AddPost />} />
             <Route path='/user/:username' element={<UserAccount />} />

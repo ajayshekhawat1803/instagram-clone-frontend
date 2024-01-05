@@ -1,0 +1,28 @@
+.story-main-cont{
+    box-sizing: border-box;
+    border: px solid;
+    padding: 3px;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    gap: 4px;
+    width: 100%;
+    /* overflow-x: scroll; */
+    /* overflow-y: scroll; */
+}
+.story-main-cont >div{
+    background-color: yellow;
+    width: max-content;
+}
+
+.story-box{
+    border: 2px solid;
+    background-color: green;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.story-main-cont .story-box:first-child{
+    margin-right: 10px;
+}

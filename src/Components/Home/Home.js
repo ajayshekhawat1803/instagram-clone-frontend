@@ -5,6 +5,7 @@ import HomeTop from './HomeTop'
 import HomeBottom from './HomeBottom'
 import Cookies from 'js-cookie'
 import Feed from '../Feed/Feed'
+import Stories from '../Stories/Stories'
 
 const Home = () => {
   const { isLoggedin,setIsLoggedIn } = useContext(context)
@@ -20,6 +21,7 @@ const Home = () => {
   return (
     <div className='home-page'>
       <HomeTop />
+      <Stories/>
       <div className='home'>
         Home
         <button onClick={()=>{Cookies.remove('userData');setIsLoggedIn(false)}}>logout</button>

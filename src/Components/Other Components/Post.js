@@ -152,7 +152,7 @@ const PostComponent = (prop) => {
                 </div>
             </div>
             <div className='post-img-box'>
-                <img src={src} onClick={() => setShowPostOptions(false)} />
+                <img src={src} onClick={() => setShowPostOptions(false)} onDoubleClick={()=>HandleLike(postOwnerId, postID)} />
             </div>
             <div className='metaData-section'>
                 <div>
