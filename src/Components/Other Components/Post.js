@@ -8,18 +8,20 @@ import comment from '../../Assets/comment.png'
 import send from '../../Assets/paper.png'
 import { context } from '../../App'
 import { toast } from 'react-toastify'
+import options from '../../Assets/dots.png'
 
 const PostComponent = (prop) => {
     const postID = prop.post._id
     let { caption } = prop.post
-    const { serverLink, token, loggedInUserID,serverLinkforImages } = useContext(context)
+    const { serverLink, token, loggedInUserID, serverLinkforImages } = useContext(context)
     const [metaData, setMetaData] = useState(prop.post.metaData)
     const [showComments, setShowComments] = useState(false)
     const src = prop.src
     const postOwnerId = prop.post.user
     const username = prop.username
     const [newComment, setNewComment] = useState("")
-    
+    const [showPostoptions, setShowPostOptions] = useState(false)
+
     const userPhotoSrc = prop.userPhoto
 
     const navigate = useNavigate()
@@ -132,16 +134,25 @@ const PostComponent = (prop) => {
         setShowComments(false)
     }
 
+
     return (
-        <div className='post-box'>
+        <div className='post-box' >
             <div className='post-box-top-section-cont'>
                 <div className='post-box-top-section'>
-                    <img src={userPhotoSrc} alt=''/>
+                    <img src={userPhotoSrc} alt='' />
                     <h4 onClick={() => navigate(`/user/${username}`)}>{username}</h4>
+                </div>
+                <div>
+                    {
+                        showPostoptions
+                            ? <PostOptionsBox postID={postID} loggedInUserID={loggedInUserID} />
+                            : ""
+                    }
+                    <img src={options} alt='options' className='post-menu-icon' onClick={() => setShowPostOptions(!showPostoptions)} />
                 </div>
             </div>
             <div className='post-img-box'>
-                <img src={src} />
+                <img src={src} onClick={() => setShowPostOptions(false)} />
             </div>
             <div className='metaData-section'>
                 <div>
@@ -195,6 +206,19 @@ export const ProfilePostComponent = (prop) => {
             <div className='post-img-box'>
                 <img src={src} />
             </div>
+        </div>
+    )
+}
+
+const PostOptionsBox = (prop) => {
+    return (
+        <div className='post-options-box'>
+            <h4>Save</h4>
+            {
+              prop.postID==prop.loggedInUserID
+              ?  <h4>Delete</h4>
+              :""
+            }
         </div>
     )
 }

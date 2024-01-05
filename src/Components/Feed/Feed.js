@@ -51,7 +51,7 @@ const Feed = () => {
     return (
         <div className='feed-container'>
             {
-                userFeed.length > 0
+                userFeed?.length > 0
                     ?
                     <div className='feed-cont'>
                         {
