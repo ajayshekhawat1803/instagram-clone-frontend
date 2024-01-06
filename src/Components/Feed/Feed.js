@@ -16,7 +16,7 @@ const Feed = () => {
         if (token) {
             getFeed()
         }
-    }, [])
+    }, [token])
 
     const getFeed = async () => {
         let res;

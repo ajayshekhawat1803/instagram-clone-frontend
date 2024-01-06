@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <div className='home-page'>
       <HomeTop />
-      <Stories/>
+      {/* <Stories/> */}
       <div className='home'>
         Home
         <button onClick={()=>{Cookies.remove('userData');setIsLoggedIn(false)}}>logout</button>

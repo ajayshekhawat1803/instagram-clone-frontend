@@ -3,6 +3,7 @@
     border: 1px solid rgba(0, 0, 0, 0.3);
     height: 100vh;
     overflow-y: scroll;
+    position: relative;
 }
 
 .notifications-cont-main::-webkit-scrollbar {
@@ -26,4 +27,90 @@
     padding: 5px;
     box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.3);
     padding-left: 15px;
+}
+
+.notifications-cont-main #loading-notifications-heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem;
+}
+
+.notifications-cont-main #no-notifications-heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem;
+}
+
+.notifications-cont-main .notification-cont {
+    padding-top: 10px;
+}
+
+.notifications-cont-main .notification-box {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3), -1px -1px 3px rgba(0, 0, 0, 0.3);
+    min-height: 60px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    margin: 0px 7px;
+    margin-bottom: 7px;
+    gap: 5px;
+}
+
+.notifications-cont-main .notification-box>img.user-pic-notification {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3), -1px -1px 3px rgba(0, 0, 0, 0.3);
+    height: 45px;
+    border-radius: 50%;
+}
+
+.notifications-cont-main .notification-box .notification-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.notifications-cont-main .notification-box .follow-btn {
+    background-color: blue;
+    color: #fff;
+    width: 70px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.notifications-cont-main .notification-box .follow-btn:hover {
+    background-color: rgb(81, 81, 248);
+    color: #fff;
+}
+
+.notifications-cont-main .notification-box .following-btn {
+    background-color: #7f7f82;
+    color: #fff;
+    width: 85px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.notifications-cont-main .notification-box .following-btn:hover {
+    background-color: #a4a4a4;
+    color: #fff;
+}
+
+.notifications-cont-main .notification-box img.post-img-notification {
+    height: 45px;
+    width: 55px;
 }
