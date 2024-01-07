@@ -9,6 +9,7 @@ import send from '../../Assets/paper.png'
 import { context } from '../../App'
 import { toast } from 'react-toastify'
 import options from '../../Assets/dots.png'
+import userPic from '../../Assets/user-profile.png'
 
 const PostComponent = (prop) => {
     const postID = prop.post._id

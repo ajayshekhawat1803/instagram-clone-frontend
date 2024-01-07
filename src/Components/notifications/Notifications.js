@@ -6,6 +6,7 @@ import HomeTop from '../Home/HomeTop'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { context } from '../../App'
+import { useNavigate } from 'react-router-dom'
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([])
@@ -96,7 +97,7 @@ const NotificationComponent = (prop) => {
   const [FetchedUserPhoto, setFetchedUserPhoto] = useState("")
   const [FetchedPost, setFetchedPost] = useState('')
   const { serverLink, token, loggedInUserID, serverLinkforImages } = useContext(context)
-
+  const navigate = useNavigate()
   useEffect(() => {
     fetchUser()
     setNotificationContentFunc()
@@ -262,8 +263,17 @@ const NotificationComponent = (prop) => {
     }
   }
 
+  const HandleNotificationClick = async () => {
+    if (type === "follow") {
+      navigate(`/user/${FetchedUserName}`)
+    }
+    else {
+      navigate(`/post/${postId}`)
+    }
+  }
+
   return (
-    <div className='notification-box'>
+    <div className='notification-box' onClick={HandleNotificationClick}>
       <img src={FetchedUserPhoto ? FetchedUserPhoto : userPic} alt='user' className='user-pic-notification ' />
       <div className='notification-content'>
         <p> <b>{FetchedUserName}</b> {notificationContent}</p>
@@ -273,7 +283,7 @@ const NotificationComponent = (prop) => {
           ?
           <button className={isFollowing ? 'following-btn' : 'follow-btn'} onClick={handleFollow}>{isFollowing ? 'Following' : 'Follow'}</button>
           :
-          <img alt='post' src={FetchedPost} className='post-img-notification'/>
+          <img alt='post' src={FetchedPost} className='post-img-notification' />
       }
     </div>
   )

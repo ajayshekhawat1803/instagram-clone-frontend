@@ -1,0 +1,96 @@
+.ListAllUsers-main-cont {
+    min-height: 100vh;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.ListAllUsers-main-cont .list-all-users-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.AllUserPosts {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-users-cont {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.all-users-cont .user-box {
+    padding: 10px;
+    min-width: 200px;
+    /* height: 200px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3),-1px -1px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 7px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.all-users-cont .user-box>img {
+  width: 100px;
+  border-radius: 50%;
+  height: 100px;
+}
+
+.all-users-cont .user-box h3{
+    color: red;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+.all-users-cont .user-box h2{
+    text-wrap: nowrap;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.all-users-cont .user-box .follow-btn {
+    background-color: blue;
+    color: #fff;
+    width: 70px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.all-users-cont .user-box .follow-btn:hover {
+    background-color: rgb(81, 81, 248);
+    color: #fff;
+}
+
+.all-users-cont .user-box .following-btn {
+    background-color: #7f7f82;
+    color: #fff;
+    width: 85px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.all-users-cont .user-box .following-btn:hover {
+    background-color: #a4a4a4;
+    color: #fff;
+}
+
+.all-users-cont .user-box button{
+    z-index: 10;
+}

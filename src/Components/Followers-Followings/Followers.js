@@ -4,6 +4,7 @@ import close from '../../Assets/cancel.png'
 import { context } from '../../App';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import userIcon from '../../Assets/user-profile.png'
 import { useNavigate } from 'react-router-dom';
 
 const Followers = (props) => {
@@ -60,7 +61,7 @@ const Followers = (props) => {
                                     SetShowFollowers(false)
                                     navigate(`/user/${follower.username}`)
                                 }}>
-                                <img src={`${serverLinkforImages}/uploads/${follower._id}/photo/${follower.photo}`} />
+                                <img src={follower.photo?`${serverLinkforImages}/uploads/${follower._id}/photo/${follower.photo}`:userIcon} />
                                 <div>
                                     <h2>{follower.username}</h2>
                                     <h3>{follower.name}</h3>

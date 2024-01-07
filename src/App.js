@@ -14,6 +14,8 @@ import UserAccount from './Components/User Account/UserAccount';
 import AllPosts from './Components/Other Components/AllPosts';
 import axios from 'axios';
 import Notifications from './Components/notifications/Notifications';
+import SinglePost from './Components/Other Components/SinglePost';
+import ListAllUsers from './Components/List-all-users/ListAllUsers';
 
 export const context = createContext({});
 function App() {
@@ -63,6 +65,8 @@ function App() {
             <Route path='/post' element={<AddPost />} />
             <Route path='/user/:username' element={<UserAccount />} />
             <Route path='/posts/:username' element={<AllPosts />} />
+            <Route path='/post/:postId' element={<SinglePost />} />
+            <Route path='/all-available-users' element={<ListAllUsers />} />
           </Routes>
         </context.Provider>
       </BrowserRouter >

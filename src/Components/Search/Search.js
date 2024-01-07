@@ -4,6 +4,7 @@ import HomeBottom from '../Home/HomeBottom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import userIcon from '../../Assets/user-profile.png'
 import { context } from '../../App'
 
 const Search = () => {
@@ -58,7 +59,7 @@ const Search = () => {
         <div className='container-main'>
             <div className='search-container'>
                 <input
-                autoFocus
+                    autoFocus
                     name='searchValue'
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value.toLowerCase())}
@@ -71,8 +72,8 @@ const Search = () => {
                                     searchResults.map((user) => {
                                         return (
                                             <div className='searched-user-box' key={user._id}
-                                            onClick={()=>navigate(`/user/${user.username}`)}>
-                                                <img src={`${serverLinkforImages}/uploads/${user._id}/photo/${user.photo}`} />
+                                                onClick={() => navigate(`/user/${user.username}`)}>
+                                                <img src={user.photo ? `${serverLinkforImages}/uploads/${user._id}/photo/${user.photo}` : userIcon} />
                                                 <div>
                                                     <h2>{user.username}</h2>
                                                     <h3>{user.name}</h3>
@@ -89,7 +90,7 @@ const Search = () => {
                     }
                 </div>
                 <button id='viewalluserbtn'
-                onClick={()=>navigate('/all-available-users')}>View all users</button>
+                    onClick={() => navigate('/all-available-users')}>View all users</button>
             </div>
             <HomeBottom />
         </div >

@@ -9,6 +9,7 @@ import { ProfilePostComponent } from '../Other Components/Post';
 import Followers from '../Followers-Followings/Followers';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import userIcon from '../../Assets/user-profile.png'
 import Followings from '../Followers-Followings/Followings';
 
 const UserAccount = () => {
@@ -153,7 +154,7 @@ const UserAccount = () => {
                 <div className='main'>
                     <div className='profile-top'>
                         <div className='profile-pic'>
-                            <img src={`${serverLinkforImages}/uploads/${profileData?._id}/photo/${profileData?.photo}` || ''} alt='profile' />
+                            <img src={profileData?.photo ? `${serverLinkforImages}/uploads/${profileData?._id}/photo/${profileData?.photo}` : userIcon} alt='profile' />
                         </div>
 
                         <div className='profile-data-right'>

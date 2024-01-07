@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+    import React, { useContext, useEffect, useState } from 'react'
 import { context } from '../../App';
 import { useNavigate, useParams } from 'react-router-dom';
 import './AllPosts.css'
@@ -6,6 +6,8 @@ import backIcon from '../../Assets/back-icon.png'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import PostComponent from './Post';
+import userPic from '../../Assets/user-profile.png'
+import HomeBottom from '../Home/HomeBottom';
 
 const AllPosts = (props) => {
     const { isLoggedin, loggedInUser, token, serverLink, loggedInUserID, serverLinkforImages } = useContext(context)
@@ -72,12 +74,13 @@ const AllPosts = (props) => {
                                     postOwnerId={userID}
                                     username={paramUsername}
                                     src={`${serverLinkforImages}/uploads/${userID}/posts/${post?.files[0]}`}
-                                    userPhoto={`${serverLinkforImages}/uploads/${userID}/photo/${userPhoto}`}
+                                    userPhoto={userPhoto?`${serverLinkforImages}/uploads/${userID}/photo/${userPhoto}`:userPic}
                                 />
                             )
                         })
                     }
                 </div>
+                <HomeBottom/>
             </div>
         </div>
     )

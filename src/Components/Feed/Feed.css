@@ -4,6 +4,9 @@
 
 .feed-container .feed-cont{
     padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -18,4 +21,20 @@
 
 .feed-container .no-feed-box h3 {
     -webkit-text-stroke:1px rgba(0, 0, 0, 0.5) ;
+}
+
+#viewalluserbtnInFeed{
+    display: block;
+    min-width: 200px;
+    font-size: 1.2rem;
+    margin: 20px auto;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-weight: 600;
+    color: #fff;
+    background-color: blue;
+    cursor: pointer;
+    margin: 10px;
 }

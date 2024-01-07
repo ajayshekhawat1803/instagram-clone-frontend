@@ -5,12 +5,14 @@ import { context } from '../../App'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import PostComponent from '../Other Components/Post'
+import { useNavigate } from 'react-router-dom'
 import userPic from '../../Assets/user-profile.png'
 
 const Feed = () => {
     const [userFeed, setUserFeed] = useState([])
     const [loading, setLoading] = useState(false)
     const { serverLink, token, loggedInUserID, serverLinkforImages } = useContext(context)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (token) {
@@ -68,13 +70,19 @@ const Feed = () => {
                                 )
                             })
                         }
+                        <button id='viewalluserbtnInFeed'
+                            onClick={() => navigate('/all-available-users')}>Follow other users to see their posts in feed</button>
                     </div>
                     :
                     <div className='no-feed-box'>
                         {
                             loading
                                 ? <h3>Loading your feed...🚀</h3>
-                                : <h3>Follow for a visual feast! <span> #InstaVibes</span></h3>
+                                : <>
+                                    <h3>Follow for a visual feast! <span> #InstaVibes</span></h3>
+                                    <button id='viewalluserbtn'
+                                        onClick={() => navigate('/all-available-users')}>View all users</button>
+                                </>
 
                         }
                     </div>
