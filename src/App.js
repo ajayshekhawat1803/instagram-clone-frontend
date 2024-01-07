@@ -16,6 +16,7 @@ import axios from 'axios';
 import Notifications from './Components/notifications/Notifications';
 import SinglePost from './Components/Other Components/SinglePost';
 import ListAllUsers from './Components/List-all-users/ListAllUsers';
+import Settings from './Components/Settings/Settings';
 
 export const context = createContext({});
 function App() {
@@ -42,9 +43,13 @@ function App() {
   }, []);
 
   // This function is just to keep the server live so that it wont go to sleep mode due to inactive requests
-  // setInterval(() => {
-  //   axios.get(`${serverLink}/health`)
-  // }, 840000);
+  const KeepServerActive = () => {
+    setInterval(() => {
+      axios.get(`${serverLink}/health`)
+    }, 840000);
+    // 840000
+  }
+  KeepServerActive()
 
   return (
     <>
@@ -63,6 +68,7 @@ function App() {
             <Route path='/notifications' element={<Notifications />} />
             <Route path='/account' element={<Account />} />
             <Route path='/post' element={<AddPost />} />
+            <Route path='/settings' element={<Settings />} />
             <Route path='/user/:username' element={<UserAccount />} />
             <Route path='/posts/:username' element={<AllPosts />} />
             <Route path='/post/:postId' element={<SinglePost />} />

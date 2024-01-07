@@ -77,7 +77,7 @@ const Login = () => {
                     }} />
                 <h1 id='insta-heading-main'>Instagram</h1>
                 <form>
-                    <input type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value.toLowerCase())} />
+                    <input type='text' autoFocus placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value.toLowerCase())} />
                     <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button id='login-btn' disabled={loading} onClick={handleLogin}>{loading ? 'Logging in' : 'Login'}</button>
                     <a>forgot password ?</a>

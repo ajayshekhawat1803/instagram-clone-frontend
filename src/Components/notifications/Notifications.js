@@ -263,9 +263,11 @@ const NotificationComponent = (prop) => {
     }
   }
 
-  const HandleNotificationClick = async () => {
+  const HandleNotificationClick = async (e) => {
     if (type === "follow") {
-      navigate(`/user/${FetchedUserName}`)
+      if (e.target.name !== "follow-btn") {
+        navigate(`/user/${FetchedUserName}`)
+      }
     }
     else {
       navigate(`/post/${postId}`)
@@ -281,7 +283,7 @@ const NotificationComponent = (prop) => {
       {
         type === "follow"
           ?
-          <button className={isFollowing ? 'following-btn' : 'follow-btn'} onClick={handleFollow}>{isFollowing ? 'Following' : 'Follow'}</button>
+          <button name='follow-btn' className={isFollowing ? 'following-btn' : 'follow-btn'} onClick={handleFollow}>{isFollowing ? 'Following' : 'Follow'}</button>
           :
           <img alt='post' src={FetchedPost} className='post-img-notification' />
       }

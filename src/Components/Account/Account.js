@@ -11,6 +11,7 @@ import { toast } from 'react-toastify'
 import Followers from '../Followers-Followings/Followers'
 import Followings from '../Followers-Followings/Followings'
 import userIcon from '../../Assets/user-profile.png'
+import EditProfile from '../Settings/Edit-Profile/EditProfile'
 
 
 const Account = () => {
@@ -19,6 +20,7 @@ const Account = () => {
     const [profileData, setProfileData] = useState({})
     const [ShowFollowers, SetShowFollowers] = useState(false)
     const [ShowFollowings, SetShowFollowings] = useState(false)
+    const [EditProfileStatus, SetEditProfileStatus] = useState(false)
 
     useEffect(() => {
         if (!isLoggedin) {
@@ -27,7 +29,7 @@ const Account = () => {
         else {
             getUserData(loggedInUser)
         }
-    }, [isLoggedin])
+    }, [isLoggedin,EditProfileStatus])
 
     const getUserData = async (username) => {
         let res;
@@ -60,12 +62,12 @@ const Account = () => {
                 <div className='top'>
                     <Link to='/'><img className='insta' src={insta}></img></Link>
                     {/* <h3>{profileData?.username}</h3> */}
-                    <Link to='/'><img src={settings}></img></Link>
+                    <Link to='/settings'><img src={settings}></img></Link>
                 </div>
                 <div className='main'>
                     <div className='profile-top'>
                         <div className='profile-pic'>
-                            <img src={profileData?.photo?`${serverLinkforImages}/uploads/${loggedInUserID}/photo/${profileData?.photo}` :userIcon} alt='profile' />
+                            <img src={profileData?.photo ? `${serverLinkforImages}/uploads/${loggedInUserID}/photo/${profileData?.photo}` : userIcon} alt='profile' />
                         </div>
 
                         <div className='profile-data-right'>
@@ -97,7 +99,7 @@ const Account = () => {
                     </div>
 
                     <div className='profile-btns'>
-                        <button>Edit Profile</button>
+                        <button onClick={()=>SetEditProfileStatus(!EditProfileStatus)}>Edit Profile</button>
                         <button>Share Profile</button>
                     </div>
 
@@ -136,7 +138,14 @@ const Account = () => {
                         SetShowFollowings={SetShowFollowings}
                         ShowFollowings={ShowFollowings}
                     />
-
+                }
+                {
+                    EditProfileStatus &&
+                    <EditProfile 
+                    username={profileData?.username}
+                    SetEditProfileStatus={SetEditProfileStatus}
+                    EditProfileStatus={EditProfileStatus}
+                    />
                 }
                 <HomeBottom />
             </div>
