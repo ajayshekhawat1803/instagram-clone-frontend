@@ -1,8 +1,11 @@
 {
-    "functions": {
-      "api/backend-check": {
-        "schedule": "*/5 * * * *"
-      }
-    }
-  }
+    "crons": [
+        {
+            "path": "api/backend-check",
+            "schedule": "*/5 * * * *"
+        }
+    ]
+}
+  
+
   
