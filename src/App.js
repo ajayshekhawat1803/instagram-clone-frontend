@@ -17,6 +17,7 @@ import Notifications from './Components/notifications/Notifications';
 import SinglePost from './Components/Other Components/SinglePost';
 import ListAllUsers from './Components/List-all-users/ListAllUsers';
 import Settings from './Components/Settings/Settings';
+import Messages from './Components/Messages/Messages';
 
 export const context = createContext({});
 function App() {
@@ -69,6 +70,7 @@ function App() {
             <Route path='/account' element={<Account />} />
             <Route path='/post' element={<AddPost />} />
             <Route path='/settings' element={<Settings />} />
+            <Route path='/chats' element={<Messages />} />
             <Route path='/user/:username' element={<UserAccount />} />
             <Route path='/posts/:username' element={<AllPosts />} />
             <Route path='/post/:postId' element={<SinglePost />} />

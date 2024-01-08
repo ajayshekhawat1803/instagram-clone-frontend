@@ -22,10 +22,7 @@ const Home = () => {
     <div className='home-page'>
       <HomeTop />
       {/* <Stories/> */}
-      <div className='home'>
-        Home
-        <button onClick={()=>{Cookies.remove('userData');setIsLoggedIn(false)}}>logout</button>
-      </div>
+     
       <Feed/>
       <HomeBottom />
     </div>

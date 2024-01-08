@@ -25,6 +25,8 @@
     justify-content: space-around;
     align-items: flex-start;
     padding: 10px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .all-users-cont .user-box {
