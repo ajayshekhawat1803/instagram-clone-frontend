@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "api/backend-check": {
+        "schedule": "*/5 * * * *"
+      }
+    }
+  }
+  
