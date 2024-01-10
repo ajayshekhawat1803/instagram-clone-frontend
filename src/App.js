@@ -43,17 +43,7 @@ function App() {
     }
   }, []);
 
-  // This function is just to keep the server live so that it wont go to sleep mode due to inactive requests
-  const KeepServerActive = () => {
   
-    // 840000
-  }
-  KeepServerActive()
-  setInterval(() => {
-    console.log("checking server health");
-    axios.get(`${serverLink}/health`)
-    axios.get(`${serverLink}`)
-  }, 1000);
 
   return (
     <>
