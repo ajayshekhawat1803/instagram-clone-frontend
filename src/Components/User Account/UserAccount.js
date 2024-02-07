@@ -154,7 +154,7 @@ const UserAccount = () => {
                 <div className='main'>
                     <div className='profile-top'>
                         <div className='profile-pic'>
-                            <img src={profileData?.photo ? `${serverLinkforImages}/uploads/${profileData?._id}/photo/${profileData?.photo}` : userIcon} alt='profile' />
+                            <img src={profileData?.photo ? profileData?.photo : userIcon} alt='profile' />
                         </div>
 
                         <div className='profile-data-right'>
@@ -208,7 +208,7 @@ const UserAccount = () => {
                                         key={index}
                                         postID={post.postID}
                                         user={profileData?.username}
-                                        src={`${serverLinkforImages}/uploads/${profileData?._id}/posts/${post.files[0]}`}
+                                        src={post.files[0]}
                                     />
                                 )
                             })

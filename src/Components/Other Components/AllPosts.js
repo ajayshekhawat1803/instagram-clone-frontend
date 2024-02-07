@@ -1,4 +1,4 @@
-    import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { context } from '../../App';
 import { useNavigate, useParams } from 'react-router-dom';
 import './AllPosts.css'
@@ -73,14 +73,14 @@ const AllPosts = (props) => {
                                     post={post}
                                     postOwnerId={userID}
                                     username={paramUsername}
-                                    src={`${serverLinkforImages}/uploads/${userID}/posts/${post?.files[0]}`}
-                                    userPhoto={userPhoto?`${serverLinkforImages}/uploads/${userID}/photo/${userPhoto}`:userPic}
+                                    src={post?.files[0]}
+                                    userPhoto={userPhoto ? userPhoto : userPic}
                                 />
                             )
                         })
                     }
                 </div>
-                <HomeBottom/>
+                <HomeBottom />
             </div>
         </div>
     )

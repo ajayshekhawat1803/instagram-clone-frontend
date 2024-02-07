@@ -61,7 +61,7 @@ const Followers = (props) => {
                                     SetShowFollowers(false)
                                     navigate(`/user/${follower.username}`)
                                 }}>
-                                <img src={follower.photo?`${serverLinkforImages}/uploads/${follower._id}/photo/${follower.photo}`:userIcon} />
+                                <img src={follower.photo ? follower.photo : userIcon} />
                                 <div>
                                     <h2>{follower.username}</h2>
                                     <h3>{follower.name}</h3>

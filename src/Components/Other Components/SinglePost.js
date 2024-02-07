@@ -5,6 +5,7 @@ import './SinglePost.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { context } from '../../App'
 import PostComponent from './Post'
+import userPic from '../../Assets/user-profile.png'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -66,8 +67,8 @@ const SinglePost = () => {
                             post={post}
                             postOwnerId={post?.user}
                             username={post?.username}
-                            src={`${serverLinkforImages}/uploads/${post?.user}/posts/${post?.files[0]}`}
-                            userPhoto={`${serverLinkforImages}/uploads/${post?.user}/photo/${post.userPhoto}`}
+                            src={post?.files[0]}
+                            userPhoto={post.userPhoto ? post.userPhoto : userPic}
                         />
                         :
                         ""

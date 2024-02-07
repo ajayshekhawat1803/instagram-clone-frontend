@@ -29,7 +29,7 @@ const Account = () => {
         else {
             getUserData(loggedInUser)
         }
-    }, [isLoggedin,EditProfileStatus])
+    }, [isLoggedin, EditProfileStatus])
 
     const getUserData = async (username) => {
         let res;
@@ -67,7 +67,7 @@ const Account = () => {
                 <div className='main'>
                     <div className='profile-top'>
                         <div className='profile-pic'>
-                            <img src={profileData?.photo ? `${serverLinkforImages}/uploads/${loggedInUserID}/photo/${profileData?.photo}` : userIcon} alt='profile' />
+                            <img src={profileData?.photo ? profileData?.photo : userIcon} alt='profile' />
                         </div>
 
                         <div className='profile-data-right'>
@@ -99,7 +99,7 @@ const Account = () => {
                     </div>
 
                     <div className='profile-btns'>
-                        <button onClick={()=>SetEditProfileStatus(!EditProfileStatus)}>Edit Profile</button>
+                        <button onClick={() => SetEditProfileStatus(!EditProfileStatus)}>Edit Profile</button>
                         <button>Share Profile</button>
                     </div>
 
@@ -112,7 +112,7 @@ const Account = () => {
                                             key={index}
                                             postID={post?._id}
                                             user={profileData?.username}
-                                            src={`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${post?.files[0]}`} />
+                                            src={post?.files[0]} />
                                     )
                                 })
                                 : ""
@@ -141,10 +141,10 @@ const Account = () => {
                 }
                 {
                     EditProfileStatus &&
-                    <EditProfile 
-                    username={profileData?.username}
-                    SetEditProfileStatus={SetEditProfileStatus}
-                    EditProfileStatus={EditProfileStatus}
+                    <EditProfile
+                        username={profileData?.username}
+                        SetEditProfileStatus={SetEditProfileStatus}
+                        EditProfileStatus={EditProfileStatus}
                     />
                 }
                 <HomeBottom />

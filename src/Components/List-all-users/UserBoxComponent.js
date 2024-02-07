@@ -9,10 +9,10 @@ import { useNavigate } from 'react-router-dom'
 const UserBoxComponent = (prop) => {
     const { user } = prop;
     const navigate = useNavigate()
-    const { isLoggedin, loggedInUser, token, serverLink, loggedInUserID, serverLinkforImages } = useContext(context)
+    const { token, serverLink, loggedInUserID } = useContext(context)
     const [isFollowing, setIsFollowing] = useState(false)
     const [userFollowers, setUserFollowers] = useState(user.followers || [])
-    const photoSrc = `${serverLinkforImages}/uploads/${user?._id}/photo/${user?.photo}`
+    const photoSrc = user?.photo
 
     useEffect(() => {
         if (userFollowers?.includes(loggedInUserID)) {

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const Followings = (props) => {
     const { id, SetShowFollowings, ShowFollowings } = props;
     const [followings, setFollowings] = useState([])
-    const { serverLink, token, serverLinkforImages } = useContext(context)
+    const { serverLink, token } = useContext(context)
     const navigate = useNavigate()
     useEffect(() => {
         FetchFollowings(id)
@@ -61,7 +61,7 @@ const Followings = (props) => {
                                     SetShowFollowings(false)
                                     navigate(`/user/${following.username}`)
                                 }}>
-                                <img src={following.photo?`${serverLinkforImages}/uploads/${following._id}/photo/${following.photo}`:userIcon} />
+                                <img src={following.photo ? following.photo : userIcon} />
                                 <div>
                                     <h2>{following.username}</h2>
                                     <h3>{following.name}</h3>

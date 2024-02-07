@@ -11,7 +11,7 @@ import userPic from '../../Assets/user-profile.png'
 const Feed = () => {
     const [userFeed, setUserFeed] = useState([])
     const [loading, setLoading] = useState(false)
-    const { serverLink, token, loggedInUserID, serverLinkforImages } = useContext(context)
+    const { serverLink, token } = useContext(context)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,6 +22,7 @@ const Feed = () => {
 
     const getFeed = async () => {
         let res;
+        setLoading(true);
         try {
             res = await axios.get(`${serverLink}/feed`,
                 {
@@ -48,6 +49,7 @@ const Feed = () => {
         else {
             toast.error(res.data.message)
         }
+        setLoading(false);
     }
 
     return (
@@ -64,8 +66,8 @@ const Feed = () => {
                                         post={post}
                                         postOwnerId={post?.user}
                                         username={post?.username}
-                                        src={`${serverLinkforImages}/uploads/${post.user}/posts/${post?.files[0]}`}
-                                        userPhoto={post?.photo ? `${serverLinkforImages}/uploads/${post.user}/photo/${post?.photo}` : userPic}
+                                        src={post?.files[0]}
+                                        userPhoto={post?.photo ? post?.photo : userPic}
                                     />
                                 )
                             })

@@ -10,7 +10,7 @@ import { context } from '../../App'
 const Search = () => {
     const [searchValue, setSearchValue] = useState('')
     const [searchResults, setSearchResults] = useState([])
-    const { isLoggedin, loggedInUser, token, serverLink, loggedInUserID, serverLinkforImages } = useContext(context)
+    const { isLoggedin, token, serverLink } = useContext(context)
     const navigate = useNavigate()
 
 
@@ -73,7 +73,7 @@ const Search = () => {
                                         return (
                                             <div className='searched-user-box' key={user._id}
                                                 onClick={() => navigate(`/user/${user.username}`)}>
-                                                <img src={user.photo ? `${serverLinkforImages}/uploads/${user._id}/photo/${user.photo}` : userIcon} />
+                                                <img src={user.photo ? user.photo : userIcon} />
                                                 <div>
                                                     <h2>{user.username}</h2>
                                                     <h3>{user.name}</h3>

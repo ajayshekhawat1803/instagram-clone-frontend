@@ -45,7 +45,7 @@ const EditProfile = (prop) => {
     if (res?.status === 200) {
       setUserData(res.data?.data)
       if (res?.data?.data?.photo) {
-        setprofilePic(`${serverLinkforImages}/uploads/${loggedInUserID}/photo/${res?.data?.data?.photo}`)
+        setprofilePic(res?.data?.data?.photo)
       }
     }
     else {
@@ -182,7 +182,7 @@ const EditProfile = (prop) => {
         />
         <span>{validationError.bio ? validationError.bio : ''}</span>
 
-        <input  type='submit' value='Update' onClick={HandleUserUpdate} disabled={loading ? true : false} />
+        <input type='submit' value='Update' onClick={HandleUserUpdate} disabled={loading ? true : false} />
       </div>
     </div>
   )

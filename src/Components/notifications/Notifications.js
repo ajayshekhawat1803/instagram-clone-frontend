@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import './Notifications.css'
 import HomeBottom from '../Home/HomeBottom'
 import userPic from '../../Assets/user-profile.png'
-import HomeTop from '../Home/HomeTop'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { context } from '../../App'
@@ -153,7 +152,7 @@ const NotificationComponent = (prop) => {
       setFetchedUserName(res?.data?.data?.username);
       setFetchedUserFollowers(res?.data?.data?.followers);
       if (res?.data?.data?.photo) {
-        setFetchedUserPhoto(`${serverLinkforImages}/uploads/${user}/photo/${res?.data?.data?.photo}`);
+        setFetchedUserPhoto(res?.data?.data?.photo);
       }
     }
     else {
@@ -184,9 +183,8 @@ const NotificationComponent = (prop) => {
       }
     }
     if (res?.status === 200) {
-      console.log(`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${res?.data?.data?.files[0]}`);
       if (res?.data?.data?.files[0]) {
-        setFetchedPost(`${serverLinkforImages}/uploads/${loggedInUserID}/posts/${res?.data?.data?.files[0]}`)
+        setFetchedPost(res?.data?.data?.files[0])
       }
     }
     else {

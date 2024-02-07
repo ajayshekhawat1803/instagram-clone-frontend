@@ -74,19 +74,22 @@ const Signup = () => {
             setScreen2(true)
             setRegisteredID(res.data.data._id)
         }
-        if (res?.status > 400 && res?.status <= 499) {
+        else if (res?.status > 400 && res?.status <= 499) {
             if (res?.data.message) {
                 const field = res.data.message.split(' ')[0];
                 setValidationError({ [field]: res.data.message })
             }
         }
-        if (res?.status === 400 && Array.isArray(res?.data.message)) {
+        else if (res?.status === 400 && Array.isArray(res?.data.message)) {
             let errs = {}
             res.data.message.forEach(mess => {
                 const field = mess.split(' ')[0];
                 errs[field] = mess;
             });
             setValidationError(errs)
+        }
+        else{
+            toast.error(res?.data.message)
         }
         setloading(false)
     }
