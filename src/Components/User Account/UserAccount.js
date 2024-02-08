@@ -11,6 +11,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import userIcon from '../../Assets/user-profile.png'
 import Followings from '../Followers-Followings/Followings';
+import EditProfile from '../Settings/Edit-Profile/EditProfile';
 
 const UserAccount = () => {
     const { isLoggedin, loggedInUser, token, serverLink, loggedInUserID, serverLinkforImages } = useContext(context)
@@ -19,6 +20,7 @@ const UserAccount = () => {
     const [isFollowing, setIsFollowing] = useState(false)
     const [ShowFollowers, SetShowFollowers] = useState(false)
     const [ShowFollowings, SetShowFollowings] = useState(false)
+    const [EditProfileStatus, SetEditProfileStatus] = useState(false)
     const { username: paramUsername } = useParams(); // Get the username from the URL parameters
 
     const navigate = useNavigate()
@@ -190,7 +192,7 @@ const UserAccount = () => {
                         {
                             selfAccount
                                 ? <>
-                                    <button>Edit Profile</button>
+                                    <button onClick={() => SetEditProfileStatus(!EditProfileStatus)}>Edit Profile</button>
                                     <button>Share Profile</button>
                                 </>
                                 : <>
@@ -233,6 +235,14 @@ const UserAccount = () => {
                         id={profileData?._id}
                         SetShowFollowings={SetShowFollowings}
                         ShowFollowings={ShowFollowings}
+                    />
+                }
+                {
+                    EditProfileStatus &&
+                    <EditProfile
+                        username={profileData?.username}
+                        SetEditProfileStatus={SetEditProfileStatus}
+                        EditProfileStatus={EditProfileStatus}
                     />
                 }
                 <HomeBottom />
