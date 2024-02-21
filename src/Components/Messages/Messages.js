@@ -15,6 +15,7 @@ const Messages = () => {
                         <h2>Messages</h2>
                     </div>
                     <input placeholder='Search here'/>
+                    <h2 className='developemnt-message'>This section is under development & will be available soon....</h2>
                 </div>
             </div>
             <HomeBottom />

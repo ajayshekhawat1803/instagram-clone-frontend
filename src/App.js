@@ -53,7 +53,8 @@ function App() {
             toastStyle={{
               background: '#333',
               color: '#fff',
-            }} />
+            }} 
+            containerId="root"/>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/search' element={<Search />} />
