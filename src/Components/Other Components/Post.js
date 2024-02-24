@@ -165,8 +165,7 @@ const PostComponent = (prop) => {
             {
                 caption &&
                 <div className='content'>
-                    <h5 onClick={() => navigate(`/user/${username}`)}>{username}</h5>
-                    <p>{caption}</p>
+                    <p> <h5 onClick={() => navigate(`/user/${username}`)}>{username}</h5> {caption}</p>
                 </div>
             }
             {
